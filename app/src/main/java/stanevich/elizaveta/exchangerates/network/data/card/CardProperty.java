@@ -24,7 +24,15 @@ public class CardProperty {
 
     @SerializedName("transaction_history")
     @Expose
-    private List<String> transactionHistoryList;
+    private List<TransactionHistoryProperty> transactionHistoryList;
+
+    public List<TransactionHistoryProperty> getTransactionHistoryList() {
+        return transactionHistoryList;
+    }
+
+    public void setTransactionHistoryList(List<TransactionHistoryProperty> transactionHistoryList) {
+        this.transactionHistoryList = transactionHistoryList;
+    }
 
     public int getCardNumber() {
         return cardNumber;
@@ -58,11 +66,4 @@ public class CardProperty {
         this.balance = balance;
     }
 
-    public List<String> getTransactionHistoryList() {
-        return transactionHistoryList;
-    }
-
-    public void setTransactionHistoryList(List<String> transactionHistoryList) {
-        this.transactionHistoryList = transactionHistoryList;
-    }
 }

@@ -1,4 +1,9 @@
 package stanevich.elizaveta.exchangerates.overview;
 
-public class OverviewViewModel {
+import androidx.lifecycle.ViewModel;
+
+public class OverviewViewModel extends ViewModel {
+
+
+
 }
