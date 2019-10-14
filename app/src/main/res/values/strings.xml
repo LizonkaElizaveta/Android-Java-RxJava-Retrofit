@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">ExchangeRates</string>
+    <string name="text_card_number">1234 1234 1234 1234</string>
+    <string name="text_user_name">Anton Ivanov</string>
+    <string name="text_valid">valid thru</string>
+    <string name="text_valid_number">12/22</string>
+    <string name="text_change_currency">Change currency</string>
+    <string name="text_gbp">GBP</string>
+    <string name="text_eur">EUR</string>
+    <string name="text_rub">RUB</string>
+    <string name="text_balance_convert">£2 125,12</string>
+    <string name="text_balance">$2 617.14</string>
+    <string name="text_your_balance">Your balance</string>
+    <string name="text_history">History</string>
 </resources>

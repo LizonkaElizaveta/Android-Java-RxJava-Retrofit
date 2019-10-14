@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="toolbarLeftMargin">32dp</dimen>
+    <dimen name="toolbarRightMargin">32dp</dimen>
+    <dimen name="cardLeftMargin">8dp</dimen>
+    <dimen name="cardRightMargin">8dp</dimen>
+    <dimen name="cardHeightLayout">260dp</dimen>
+    <dimen name="marginMaterial">8dp</dimen>
+    <dimen name="recyclerViewListItemsPadding">8dp</dimen>
+</resources>
