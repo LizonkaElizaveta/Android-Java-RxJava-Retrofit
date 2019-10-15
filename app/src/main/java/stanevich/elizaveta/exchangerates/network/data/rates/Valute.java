@@ -3,7 +3,9 @@ package stanevich.elizaveta.exchangerates.network.data.rates;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ValuteProperty {
+
+// Currency :)
+public class Valute {
     @SerializedName("ID")
     @Expose
     private int id;

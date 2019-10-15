@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.Map;
 
-public class ExchangeRatesProperty {
+public class ExchangeRates {
     @SerializedName("Date")
     @Expose
     private int dateExRat;
@@ -24,7 +24,7 @@ public class ExchangeRatesProperty {
 
     @SerializedName("Valute")
     @Expose
-    private Map<String, ValuteProperty> valutePropertyMap;
+    private Map<String, Valute> valutePropertyMap;
 
     public int getDateExRat() {
         return dateExRat;
@@ -58,11 +58,11 @@ public class ExchangeRatesProperty {
         this.timestamp = timestamp;
     }
 
-    public Map<String, ValuteProperty> getValutePropertyMap() {
+    public Map<String, Valute> getValutePropertyMap() {
         return valutePropertyMap;
     }
 
-    public void setValutePropertyMap(Map<String, ValuteProperty> valutePropertyMap) {
+    public void setValutePropertyMap(Map<String, Valute> valutePropertyMap) {
         this.valutePropertyMap = valutePropertyMap;
     }
 }

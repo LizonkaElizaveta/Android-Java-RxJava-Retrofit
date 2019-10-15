@@ -3,7 +3,7 @@ package stanevich.elizaveta.exchangerates.network.data.card;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class TransactionHistoryProperty {
+public class TransactionHistory {
 
     @SerializedName("title")
     @Expose

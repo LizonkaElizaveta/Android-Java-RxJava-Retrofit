@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class CardProperty {
+public class Card {
     @SerializedName("card_number")
     @Expose
     private int cardNumber;
@@ -24,13 +24,13 @@ public class CardProperty {
 
     @SerializedName("transaction_history")
     @Expose
-    private List<TransactionHistoryProperty> transactionHistoryList;
+    private List<TransactionHistory> transactionHistoryList;
 
-    public List<TransactionHistoryProperty> getTransactionHistoryList() {
+    public List<TransactionHistory> getTransactionHistoryList() {
         return transactionHistoryList;
     }
 
-    public void setTransactionHistoryList(List<TransactionHistoryProperty> transactionHistoryList) {
+    public void setTransactionHistoryList(List<TransactionHistory> transactionHistoryList) {
         this.transactionHistoryList = transactionHistoryList;
     }
 

@@ -4,7 +4,7 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
-import stanevich.elizaveta.exchangerates.network.data.card.CardProperty;
+import stanevich.elizaveta.exchangerates.network.data.card.Card;
 
 public class CardApiService {
 
@@ -29,7 +29,7 @@ public class CardApiService {
 
     public interface JSONPCardApi {
         @GET("/data.php")
-        Call<CardProperty> getCardProperty();
+        Call<Card> getCardProperty();
     }
 
     public JSONPCardApi getJSONCardApi() {
