@@ -21,7 +21,7 @@ public class RecyclerAdapter extends ListAdapter<TransactionHistory, RecyclerAda
 
         @Override
         public boolean areContentsTheSame(@NonNull TransactionHistory oldItem, @NonNull TransactionHistory newItem) {
-            return oldItem.getTitle().equals(newItem.getTitle());
+            return oldItem.equals(newItem);
         }
     }
 
@@ -53,7 +53,6 @@ public class RecyclerAdapter extends ListAdapter<TransactionHistory, RecyclerAda
     public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
         TransactionHistory transactionHistory = getItem(position);
         holder.bind(transactionHistory);
-
     }
 
 }

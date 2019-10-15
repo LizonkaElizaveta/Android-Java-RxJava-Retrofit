@@ -3,133 +3,106 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:paddingTop="@dimen/marginMaterial"
+        android:paddingBottom="16dp">
+
+        <ImageView
+            android:id="@+id/img_logo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/background_button_round"
+            android:padding="2dp"
+            android:scaleType="centerCrop"
+            app:imgUrl="@{viewModel.iconUrl}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </ImageView>
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/roboto_thin"
+            android:text="@{viewModel.title}"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/date"
+            app:layout_constraintStart_toEndOf="@id/img_logo"
+            app:layout_constraintTop_toTopOf="@id/img_logo"
+            tools:text="Netflix" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/roboto_thin"
+            android:text="@{viewModel.date}"
+            android:textColor="#A7A7A7"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/img_logo"
+            app:layout_constraintStart_toEndOf="@id/img_logo"
+            app:layout_constraintTop_toBottomOf="@id/name"
+            tools:text="15/12/2019" />
+
+        <TextView
+            android:id="@+id/minus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="-"
+            android:textColor="@color/colorPrimary"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/img_logo"
+            app:layout_constraintEnd_toStartOf="@id/currency_value"
+            app:layout_constraintTop_toTopOf="@id/img_logo" />
+
+
+        <TextView
+            android:id="@+id/currency_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@{viewModel.convertedAmount}"
+            android:textColor="#000"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/img_logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/img_logo"
+            tools:text="7.99" />
+
+        <TextView
+            android:id="@+id/fact_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/roboto_thin"
+            android:text="@{viewModel.formattedAmount()}"
+            android:textColor="#A7A7A7"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/img_logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/currency_value"
+            tools:text="9.85" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <data>
 
         <variable
             name="viewModel"
             type="stanevich.elizaveta.exchangerates.network.data.card.TransactionHistory" />
     </data>
-
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="90dp"
-    android:paddingTop="@dimen/marginMaterial"
-
-    >
-
-    <ImageView
-        android:id="@+id/img_logo"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        app:imgUrl="@{viewModel.icon_url}"
-        android:layout_marginStart="16dp"
-        android:background="@drawable/background_button_round"
-        android:padding="2dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </ImageView>
-
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:fontFamily="@font/roboto_thin"
-        android:textColor="@color/colorPrimary"
-        android:textSize="18sp"
-        android:text="@{viewModel.title}"
-        app:layout_constraintBottom_toTopOf="@+id/date"
-        app:layout_constraintStart_toEndOf="@id/img_logo"
-        app:layout_constraintTop_toTopOf="@id/img_logo"
-        tools:text="Netflix" />
-
-    <TextView
-        android:id="@+id/date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:fontFamily="@font/roboto_thin"
-        android:textColor="#A7A7A7"
-        android:textSize="12sp"
-        android:text="@{viewModel.date}"
-        app:layout_constraintBottom_toBottomOf="@id/img_logo"
-        app:layout_constraintStart_toEndOf="@id/img_logo"
-        app:layout_constraintTop_toBottomOf="@id/name"
-        tools:text="15/12/2019" />
-
-    <TextView
-        android:id="@+id/minus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:textColor="@color/colorPrimary"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:fontFamily="@font/roboto_bold"
-        app:layout_constraintBottom_toBottomOf="@id/img_logo"
-        app:layout_constraintEnd_toStartOf="@id/currency_symbol"
-        app:layout_constraintTop_toTopOf="@id/img_logo"
-        tools:text="-" />
-
-    <TextView
-        android:id="@+id/currency_symbol"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:textColor="@color/colorPrimary"
-        android:textSize="24sp"
-        android:fontFamily="@font/roboto_bold"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/currency_value"
-        app:layout_constraintEnd_toStartOf="@id/currency_value"
-        app:layout_constraintTop_toTopOf="@id/currency_value"
-        tools:text="£" /><!-- ₽ £ $ -->
-
-    <TextView
-        android:id="@+id/currency_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:textColor="#000"
-        android:fontFamily="@font/roboto_bold"
-        android:textSize="24sp"
-        android:text="@{viewModel.amount}"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/img_logo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/img_logo"
-        tools:text="7.99" />
-
-    <TextView
-        android:id="@+id/fact_value_symbol"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:textColor="#A7A7A7"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        android:fontFamily="@font/roboto_thin"
-        app:layout_constraintBottom_toBottomOf="@id/fact_value"
-        app:layout_constraintEnd_toStartOf="@id/fact_value"
-        app:layout_constraintTop_toTopOf="@id/fact_value"
-        tools:text="$" /><!-- ₽ £ $ -->
-
-    <TextView
-        android:id="@+id/fact_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="@font/roboto_thin"
-        android:textColor="#A7A7A7"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/img_logo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/currency_value"
-        tools:text="9.85" />
-</androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

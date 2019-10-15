@@ -21,11 +21,11 @@ public class BindingAdapterImpl {
     public static void bindRecyclerView(RecyclerView recyclerView, List<TransactionHistory> data) {
         RecyclerAdapter adapter = (RecyclerAdapter) recyclerView.getAdapter();
         if (adapter != null && data != null)
-        adapter.submitList(data);
+            adapter.submitList(data);
     }
 
     @BindingAdapter("imgUrl")
-    public static void bindImage(ImageView imageView, String imgUrl){
+    public static void bindImage(ImageView imageView, String imgUrl) {
         Glide.with(imageView.getContext())
                 .load(imgUrl)
                 .apply(new RequestOptions().transform(new CenterInside()).transform(new RoundedCorners(30)))

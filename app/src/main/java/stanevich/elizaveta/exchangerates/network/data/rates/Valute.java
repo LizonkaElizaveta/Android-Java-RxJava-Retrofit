@@ -8,11 +8,11 @@ import com.google.gson.annotations.SerializedName;
 public class Valute {
     @SerializedName("ID")
     @Expose
-    private int id;
+    private String id;
 
     @SerializedName("NumCode")
     @Expose
-    private int numCode;
+    private String numCode;
 
     @SerializedName("CharCode")
     @Expose
@@ -20,33 +20,33 @@ public class Valute {
 
     @SerializedName("Nominal")
     @Expose
-    private String nominal;
+    private int nominal;
 
     @SerializedName("Name")
     @Expose
-    private int nameNom;
+    private String nameNom;
 
     @SerializedName("Value")
     @Expose
-    private int value;
+    private double value;
 
     @SerializedName("Previous")
     @Expose
     private String previous;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getNumCode() {
+    public String getNumCode() {
         return numCode;
     }
 
-    public void setNumCode(int numCode) {
+    public void setNumCode(String numCode) {
         this.numCode = numCode;
     }
 
@@ -58,27 +58,27 @@ public class Valute {
         this.charCode = charCode;
     }
 
-    public String getNominal() {
+    public int getNominal() {
         return nominal;
     }
 
-    public void setNominal(String nominal) {
+    public void setNominal(int nominal) {
         this.nominal = nominal;
     }
 
-    public int getNameNom() {
+    public String getNameNom() {
         return nameNom;
     }
 
-    public void setNameNom(int nameNom) {
+    public void setNameNom(String nameNom) {
         this.nameNom = nameNom;
     }
 
-    public int getValue() {
+    public double getValue() {
         return value;
     }
 
-    public void setValue(int value) {
+    public void setValue(double value) {
         this.value = value;
     }
 

@@ -9,7 +9,7 @@ import java.util.List;
 public class Card {
     @SerializedName("card_number")
     @Expose
-    private String cardNumber = "1234 5432 2345 5322";
+    private String cardNumber = "";
 
     @SerializedName("cardholder_name")
     @Expose
@@ -21,11 +21,21 @@ public class Card {
 
     @SerializedName("balance")
     @Expose
-    private String balance = "0.00";
+    private double balance = 0.0;
 
     @SerializedName("transaction_history")
     @Expose
     private List<TransactionHistory> transactionHistoryList = new ArrayList<>();
+
+    public String getConvertedBalance() {
+        return convertedBalance;
+    }
+
+    public void setConvertedBalance(String convertedBalance) {
+        this.convertedBalance = convertedBalance;
+    }
+
+    private String convertedBalance;
 
     public List<TransactionHistory> getTransactionHistoryList() {
         return transactionHistoryList;
@@ -59,11 +69,16 @@ public class Card {
         this.valid = valid;
     }
 
-    public String getBalance() {
-        return "$" + balance;
+    public double getBalance() {
+        return balance;
     }
 
-    public void setBalance(String balance) {
+    public String formattedBalance() {
+        String minus = balance < 0 ? "-" : "";
+        return minus + "$" + Math.abs(balance);
+    }
+
+    public void setBalance(double balance) {
         this.balance = balance;
     }
 

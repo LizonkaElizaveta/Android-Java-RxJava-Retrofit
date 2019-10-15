@@ -69,7 +69,8 @@
                 app:cardUseCompatPadding="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/toolbar">
+                app:layout_constraintTop_toBottomOf="@id/toolbar"
+                >
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -161,7 +162,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
                         android:fontFamily="@font/roboto_bold"
-                        android:text="@string/text_balance_convert"
+                        tools:text="@string/text_balance_convert"
+                        android:text="@{viewModel.cardLiveData.convertedBalance}"
                         android:textColor="#000"
                         android:textSize="24sp"
                         app:layout_constraintStart_toStartOf="@id/imgUser"
@@ -173,7 +175,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_bold"
                         tools:text="@string/text_balance"
-                        android:text="@{viewModel.cardLiveData.balance}"
+                        android:text="@{viewModel.cardLiveData.formattedBalance()}"
                         android:textColor="#000"
                         android:textSize="18sp"
                         app:layout_constraintBottom_toBottomOf="@id/tvBalanceConvert"
@@ -206,15 +208,16 @@
                 app:cardUseCompatPadding="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/constraintLayout">
+                app:layout_constraintTop_toBottomOf="@id/constraintLayout"
+                app:layout_constraintBottom_toBottomOf="parent">
 
                 <androidx.core.widget.NestedScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="200dp">
+                    android:layout_height="230dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="match_parent">
 
                         <TextView
                             android:id="@+id/tvHistory"
@@ -234,7 +237,7 @@
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/history_list"
                             android:layout_width="match_parent"
-                            android:layout_height="140dp"
+                            android:layout_height="160dp"
                             android:layout_marginTop="@dimen/marginMaterial"
                             app:listData="@{viewModel.cardLiveData.transactionHistoryList}"
                             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
@@ -266,33 +269,37 @@
                     android:layout_height="wrap_content"
                     android:drawableTop="@drawable/ic_gbp"
                     android:text="@string/text_gbp"
+                    android:onClick="@{()->viewModel.setCurrencyType(`GBP`)}"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/btnUSD"
+                    app:layout_constraintEnd_toStartOf="@id/btnEUR"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
-                    android:id="@+id/btnUSD"
+                    android:id="@+id/btnEUR"
                     style="@style/MyButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableTop="@drawable/ic_eur"
                     android:text="@string/text_eur"
+                    android:onClick="@{()->viewModel.setCurrencyType(`EUR`)}"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@id/btnRUB"
+                    app:layout_constraintEnd_toStartOf="@id/btnRUB"
                     app:layout_constraintStart_toEndOf="@id/btnGBP"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
                     android:id="@+id/btnRUB"
                     style="@style/MyButtonStyle"
+                    android:checked="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableTop="@drawable/ic_rub"
                     android:text="@string/text_rub"
+                    android:onClick="@{()->viewModel.setCurrencyType(`RUB`)}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/btnUSD"
+                    app:layout_constraintStart_toEndOf="@id/btnEUR"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

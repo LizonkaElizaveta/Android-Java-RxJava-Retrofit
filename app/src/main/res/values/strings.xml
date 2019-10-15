@@ -6,7 +6,7 @@
     <string name="text_valid_number">12/22</string>
     <string name="text_change_currency">Change currency</string>
     <string name="text_gbp">GBP</string>
-    <string name="text_eur">USD</string>
+    <string name="text_eur">EUR</string>
     <string name="text_rub">RUB</string>
     <string name="text_balance_convert">£2 125,12</string>
     <string name="text_balance">$2 617.14</string>

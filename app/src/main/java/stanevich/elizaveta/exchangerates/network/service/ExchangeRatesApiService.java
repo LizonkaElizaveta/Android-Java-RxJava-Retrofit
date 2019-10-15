@@ -4,7 +4,7 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
-import stanevich.elizaveta.exchangerates.network.data.rates.ExchangeRates;
+import stanevich.elizaveta.exchangerates.network.data.rates.ExchangeRate;
 
 public class ExchangeRatesApiService {
     private static ExchangeRatesApiService mInstance;
@@ -28,7 +28,7 @@ public class ExchangeRatesApiService {
 
     public interface JSONPRatesApi {
         @GET("/daily_json.js")
-        Call<ExchangeRates> getExchangeRatesProperty();
+        Call<ExchangeRate> getExchangeRatesProperty();
     }
 
     public JSONPRatesApi getJSONRatesApi() {

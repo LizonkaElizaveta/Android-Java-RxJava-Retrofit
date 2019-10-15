@@ -3,6 +3,8 @@ package stanevich.elizaveta.exchangerates.network.data.card;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Objects;
+
 public class TransactionHistory {
 
     @SerializedName("title")
@@ -11,7 +13,7 @@ public class TransactionHistory {
 
     @SerializedName("icon_url")
     @Expose
-    private String icon_url;
+    private String iconUrl;
 
     @SerializedName("date")
     @Expose
@@ -19,7 +21,17 @@ public class TransactionHistory {
 
     @SerializedName("amount")
     @Expose
-    private String amount;
+    private double amount;
+
+    public String getConvertedAmount() {
+        return convertedAmount;
+    }
+
+    public void setConvertedAmount(String convertedAmount) {
+        this.convertedAmount = convertedAmount;
+    }
+
+    private String convertedAmount = "";
 
     public String getTitle() {
         return title;
@@ -29,12 +41,12 @@ public class TransactionHistory {
         this.title = title;
     }
 
-    public String getIcon_url() {
-        return icon_url;
+    public String getIconUrl() {
+        return iconUrl;
     }
 
-    public void setIcon_url(String icon_url) {
-        this.icon_url = icon_url;
+    public void setIconUrl(String iconUrl) {
+        this.iconUrl = iconUrl;
     }
 
     public String getDate() {
@@ -45,11 +57,33 @@ public class TransactionHistory {
         this.date = date;
     }
 
-    public String getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(String amount) {
+    public String formattedAmount() {
+        String minus = amount < 0 ? "-" : "";
+        return minus + "$" + Math.abs(amount);
+    }
+
+    public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TransactionHistory that = (TransactionHistory) o;
+        return Double.compare(that.amount, amount) == 0 &&
+                Objects.equals(title, that.title) &&
+                Objects.equals(iconUrl, that.iconUrl) &&
+                Objects.equals(date, that.date) &&
+                convertedAmount.equals(that.convertedAmount);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, iconUrl, date, amount, convertedAmount);
     }
 }
