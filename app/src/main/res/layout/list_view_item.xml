@@ -6,18 +6,22 @@
     <data>
 
         <variable
-            name="property"
-            type="stanevich.elizaveta.exchangerates.network.data.rates.ExchangeRates" />
+            name="viewModel"
+            type="stanevich.elizaveta.exchangerates.network.data.card.TransactionHistory" />
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_height="70dp">
+    android:layout_height="90dp"
+    android:paddingTop="@dimen/marginMaterial"
+
+    >
 
     <ImageView
         android:id="@+id/img_logo"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        app:imgUrl="@{viewModel.icon_url}"
         android:layout_marginStart="16dp"
         android:background="@drawable/background_button_round"
         android:padding="2dp"
@@ -36,6 +40,7 @@
         android:fontFamily="@font/roboto_thin"
         android:textColor="@color/colorPrimary"
         android:textSize="18sp"
+        android:text="@{viewModel.title}"
         app:layout_constraintBottom_toTopOf="@+id/date"
         app:layout_constraintStart_toEndOf="@id/img_logo"
         app:layout_constraintTop_toTopOf="@id/img_logo"
@@ -49,6 +54,7 @@
         android:fontFamily="@font/roboto_thin"
         android:textColor="#A7A7A7"
         android:textSize="12sp"
+        android:text="@{viewModel.date}"
         app:layout_constraintBottom_toBottomOf="@id/img_logo"
         app:layout_constraintStart_toEndOf="@id/img_logo"
         app:layout_constraintTop_toBottomOf="@id/name"
@@ -90,6 +96,7 @@
         android:textColor="#000"
         android:fontFamily="@font/roboto_bold"
         android:textSize="24sp"
+        android:text="@{viewModel.amount}"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/img_logo"
         app:layout_constraintEnd_toEndOf="parent"

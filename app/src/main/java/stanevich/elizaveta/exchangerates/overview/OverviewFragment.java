@@ -29,6 +29,11 @@ public class OverviewFragment extends Fragment {
 
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
+
+        binding.historyList.setAdapter(new RecyclerAdapter());
+
+
         return binding.getRoot();
     }
+
 }

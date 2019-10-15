@@ -3,6 +3,7 @@ package stanevich.elizaveta.exchangerates.network.data.card;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Card {
@@ -24,7 +25,7 @@ public class Card {
 
     @SerializedName("transaction_history")
     @Expose
-    private List<TransactionHistory> transactionHistoryList;
+    private List<TransactionHistory> transactionHistoryList = new ArrayList<>();
 
     public List<TransactionHistory> getTransactionHistoryList() {
         return transactionHistoryList;
