@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import stanevich.elizaveta.exchangerates.databinding.ListViewItemBinding;
-import stanevich.elizaveta.exchangerates.network.data.card.TransactionHistory;
+import stanevich.elizaveta.exchangerates.model.card.TransactionHistory;
 
 public class RecyclerAdapter extends ListAdapter<TransactionHistory, RecyclerAdapter.RecyclerViewHolder> {
 

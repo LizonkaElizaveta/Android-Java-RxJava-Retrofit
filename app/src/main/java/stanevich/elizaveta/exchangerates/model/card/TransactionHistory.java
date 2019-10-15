@@ -1,4 +1,4 @@
-package stanevich.elizaveta.exchangerates.network.data.card;
+package stanevich.elizaveta.exchangerates.model.card;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

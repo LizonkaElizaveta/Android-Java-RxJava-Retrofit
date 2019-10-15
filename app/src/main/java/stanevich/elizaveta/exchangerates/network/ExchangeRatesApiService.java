@@ -1,10 +1,10 @@
-package stanevich.elizaveta.exchangerates.network.service;
+package stanevich.elizaveta.exchangerates.network;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
-import stanevich.elizaveta.exchangerates.network.data.rates.ExchangeRate;
+import stanevich.elizaveta.exchangerates.model.rates.ExchangeRate;
 
 public class ExchangeRatesApiService {
     private static ExchangeRatesApiService mInstance;

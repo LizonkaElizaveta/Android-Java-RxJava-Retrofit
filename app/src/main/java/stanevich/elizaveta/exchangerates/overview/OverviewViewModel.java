@@ -12,12 +12,12 @@ import java.util.Map;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import stanevich.elizaveta.exchangerates.network.data.card.Card;
-import stanevich.elizaveta.exchangerates.network.data.card.TransactionHistory;
-import stanevich.elizaveta.exchangerates.network.data.rates.ExchangeRate;
-import stanevich.elizaveta.exchangerates.network.data.rates.Valute;
-import stanevich.elizaveta.exchangerates.network.service.CardApiService;
-import stanevich.elizaveta.exchangerates.network.service.ExchangeRatesApiService;
+import stanevich.elizaveta.exchangerates.model.card.Card;
+import stanevich.elizaveta.exchangerates.model.card.TransactionHistory;
+import stanevich.elizaveta.exchangerates.model.rates.ExchangeRate;
+import stanevich.elizaveta.exchangerates.model.rates.Valute;
+import stanevich.elizaveta.exchangerates.network.CardApiService;
+import stanevich.elizaveta.exchangerates.network.ExchangeRatesApiService;
 
 public class OverviewViewModel extends ViewModel {
 
@@ -69,7 +69,7 @@ public class OverviewViewModel extends ViewModel {
         return 1.0;
     }
 
-    public String formatCurrency(double value) {
+    private String formatCurrency(double value) {
         CurrencyType currencyType = _currentCurrencyType.getValue();
         NumberFormat formatter = new DecimalFormat(currencyType.getSymbol() + "0.00");
         double absValue = Math.abs(value);

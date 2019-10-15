@@ -12,7 +12,7 @@ import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
-import stanevich.elizaveta.exchangerates.network.data.card.TransactionHistory;
+import stanevich.elizaveta.exchangerates.model.card.TransactionHistory;
 import stanevich.elizaveta.exchangerates.overview.RecyclerAdapter;
 
 public class BindingAdapterImpl {
