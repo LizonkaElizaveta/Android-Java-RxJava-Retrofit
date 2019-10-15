@@ -102,7 +102,7 @@
 
         <variable
             name="viewModel"
-            type="stanevich.elizaveta.exchangerates.network.data.card.TransactionHistory" />
+            type="stanevich.elizaveta.exchangerates.model.card.TransactionHistory" />
     </data>
 
 </layout>

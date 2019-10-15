@@ -3,311 +3,342 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/image_error"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorAccent"
+            android:elevation="20dp"
+            android:visibility="gone"
+            app:errorImage="@{viewModel.status}"
+            tools:src="@drawable/ic_error_black" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyleLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    android:translationZ="2dp"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:status="@{viewModel.status}" />
+
+                <TextView
+                    android:id="@+id/tvChangeCurrency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/roboto_thin"
+                    android:text="@string/text_change_currency"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/crdUser" />
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:theme="@style/Widget.AppCompat.Toolbar">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start|center_horizontal|center_vertical"
+                        android:layout_marginStart="@dimen/toolbarLeftMargin"
+                        android:src="@drawable/ic_menu" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_horizontal|center_vertical"
+                        android:layout_marginEnd="@dimen/toolbarRightMargin"
+                        android:src="@drawable/ic_search" />
+
+                </androidx.appcompat.widget.Toolbar>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/crdUser"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/cardLeftMargin"
+                    android:layout_marginTop="@dimen/marginMaterial"
+                    android:layout_marginEnd="@dimen/cardRightMargin"
+                    app:cardCornerRadius="16dp"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/cardHeightLayout"
+                        android:padding="8dp">
+
+                        <ImageView
+                            android:id="@+id/imgMastercard"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/marginMaterial"
+                            android:layout_marginTop="24dp"
+                            android:src="@drawable/ic_mastercard"
+                            app:layout_constraintEnd_toStartOf="@id/tvCardNumber"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/imgUser"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="24dp"
+                            android:src="@drawable/ic_user"
+                            app:layout_constraintEnd_toEndOf="@id/imgMastercard"
+                            app:layout_constraintStart_toStartOf="@id/imgMastercard"
+                            app:layout_constraintTop_toBottomOf="@id/imgMastercard" />
+
+                        <TextView
+                            android:id="@+id/tvCardNumber"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/marginMaterial"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="@{viewModel.cardLiveData.cardNumber}"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="24sp"
+                            app:layout_constraintBottom_toBottomOf="@id/imgMastercard"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/imgMastercard"
+                            app:layout_constraintTop_toTopOf="@id/imgMastercard"
+                            tools:text="@string/text_card_number" />
+
+                        <TextView
+                            android:id="@+id/tvUserName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/marginMaterial"
+                            android:fontFamily="@font/roboto_thin"
+                            android:text="@{viewModel.cardLiveData.cardholderName}"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@id/imgUser"
+                            app:layout_constraintStart_toEndOf="@id/imgUser"
+                            app:layout_constraintTop_toTopOf="@id/imgUser"
+                            tools:text="@string/text_user_name" />
+
+
+                        <TextView
+                            android:id="@+id/tvValid"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_thin"
+                            android:text="@{viewModel.cardLiveData.valid}"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@id/tvUserName"
+                            app:layout_constraintEnd_toEndOf="@id/tvCardNumber"
+                            app:layout_constraintTop_toTopOf="@id/tvUserName"
+                            tools:text="@string/text_valid_number" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_thin"
+                            android:text="@string/text_valid"
+                            android:textAllCaps="true"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toTopOf="@id/tvValid"
+                            app:layout_constraintEnd_toEndOf="@id/tvValid"
+                            app:layout_constraintStart_toStartOf="@id/tvValid"
+                            app:layout_constraintTop_toBottomOf="@id/tvCardNumber" />
+
+                        <TextView
+                            android:id="@+id/tvBalanceConvert"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="24dp"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="@{viewModel.cardLiveData.convertedBalance}"
+                            android:textColor="#000"
+                            android:textSize="24sp"
+                            app:layout_constraintStart_toStartOf="@id/imgUser"
+                            app:layout_constraintTop_toBottomOf="@id/imgUser"
+                            tools:text="@string/text_balance_convert" />
+
+                        <TextView
+                            android:id="@+id/tvBalance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="@{viewModel.cardLiveData.formattedBalance()}"
+                            android:textColor="#000"
+                            android:textSize="18sp"
+                            app:layout_constraintBottom_toBottomOf="@id/tvBalanceConvert"
+                            app:layout_constraintEnd_toEndOf="@id/tvCardNumber"
+                            app:layout_constraintTop_toTopOf="@id/tvBalanceConvert"
+                            tools:text="@string/text_balance" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_thin"
+                            android:text="@string/text_your_balance"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="@id/tvBalance"
+                            app:layout_constraintStart_toStartOf="@id/tvBalance"
+                            app:layout_constraintTop_toBottomOf="@id/tvBalance" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/crdMoney"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/cardLeftMargin"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="@dimen/cardRightMargin"
+                    app:cardCornerRadius="16dp"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/constraintLayout">
+
+                    <androidx.core.widget.NestedScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="230dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tvHistory"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="24dp"
+                                android:fontFamily="@font/roboto_thin"
+                                android:text="@string/text_history"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.1"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/history_list"
+                                android:layout_width="match_parent"
+                                android:layout_height="160dp"
+                                android:layout_marginTop="@dimen/marginMaterial"
+                                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tvHistory"
+                                app:listData="@{viewModel.cardLiveData.transactionHistoryList}"
+                                tools:listitem="@layout/list_view_item" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.core.widget.NestedScrollView>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/marginMaterial"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="@dimen/marginMaterial"
+                    app:layout_constraintTop_toBottomOf="@id/tvChangeCurrency">
+
+                    <Button
+                        android:id="@+id/btnGBP"
+                        style="@style/MyButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableTop="@drawable/ic_gbp"
+                        android:onClick="@{()->viewModel.setCurrencyType(`GBP`)}"
+                        android:text="@string/text_gbp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/btnEUR"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <Button
+                        android:id="@+id/btnEUR"
+                        style="@style/MyButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableTop="@drawable/ic_eur"
+                        android:onClick="@{()->viewModel.setCurrencyType(`EUR`)}"
+                        android:text="@string/text_eur"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/btnRUB"
+                        app:layout_constraintStart_toEndOf="@id/btnGBP"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <Button
+                        android:id="@+id/btnRUB"
+                        style="@style/MyButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:drawableTop="@drawable/ic_rub"
+                        android:onClick="@{()->viewModel.setCurrencyType(`RUB`)}"
+                        android:text="@string/text_rub"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/btnEUR"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </ScrollView>
+    </FrameLayout>
+
     <data>
 
         <variable
             name="viewModel"
             type="stanevich.elizaveta.exchangerates.overview.OverviewViewModel" />
     </data>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorPrimary">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/tvChangeCurrency"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/roboto_thin"
-                android:text="@string/text_change_currency"
-                android:textColor="@color/colorAccent"
-                android:textSize="24sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.2"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/crdUser" />
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:theme="@style/Widget.AppCompat.Toolbar">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start|center_horizontal|center_vertical"
-                    android:layout_marginStart="@dimen/toolbarLeftMargin"
-                    android:src="@drawable/ic_menu" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end|center_horizontal|center_vertical"
-                    android:layout_marginEnd="@dimen/toolbarRightMargin"
-                    android:src="@drawable/ic_search" />
-
-            </androidx.appcompat.widget.Toolbar>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/crdUser"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/cardLeftMargin"
-                android:layout_marginTop="@dimen/marginMaterial"
-                android:layout_marginEnd="@dimen/cardRightMargin"
-                app:cardCornerRadius="16dp"
-                app:cardUseCompatPadding="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/toolbar"
-                >
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/cardHeightLayout"
-                    android:padding="8dp">
-
-                    <ImageView
-                        android:id="@+id/imgMastercard"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/marginMaterial"
-                        android:layout_marginTop="24dp"
-                        android:src="@drawable/ic_mastercard"
-                        app:layout_constraintEnd_toStartOf="@id/tvCardNumber"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:id="@+id/imgUser"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="24dp"
-                        android:src="@drawable/ic_user"
-                        app:layout_constraintEnd_toEndOf="@id/imgMastercard"
-                        app:layout_constraintStart_toStartOf="@id/imgMastercard"
-                        app:layout_constraintTop_toBottomOf="@id/imgMastercard" />
-
-                    <TextView
-                        android:id="@+id/tvCardNumber"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/marginMaterial"
-                        android:fontFamily="@font/roboto_bold"
-                        android:text="@{viewModel.cardLiveData.cardNumber}"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="24sp"
-                        app:layout_constraintBottom_toBottomOf="@id/imgMastercard"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/imgMastercard"
-                        app:layout_constraintTop_toTopOf="@id/imgMastercard"
-                        tools:text="@string/text_card_number" />
-
-                    <TextView
-                        android:id="@+id/tvUserName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/marginMaterial"
-                        android:fontFamily="@font/roboto_thin"
-                        android:text="@{viewModel.cardLiveData.cardholderName}"
-                        tools:text="@string/text_user_name"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="@id/imgUser"
-                        app:layout_constraintStart_toEndOf="@id/imgUser"
-                        app:layout_constraintTop_toTopOf="@id/imgUser" />
-
-
-                    <TextView
-                        android:id="@+id/tvValid"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/roboto_thin"
-                        android:text="@{viewModel.cardLiveData.valid}"
-                        tools:text="@string/text_valid_number"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="@id/tvUserName"
-                        app:layout_constraintEnd_toEndOf="@id/tvCardNumber"
-                        app:layout_constraintTop_toTopOf="@id/tvUserName" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/roboto_thin"
-                        android:text="@string/text_valid"
-                        android:textAllCaps="true"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toTopOf="@id/tvValid"
-                        app:layout_constraintEnd_toEndOf="@id/tvValid"
-                        app:layout_constraintStart_toStartOf="@id/tvValid"
-                        app:layout_constraintTop_toBottomOf="@id/tvCardNumber" />
-
-                    <TextView
-                        android:id="@+id/tvBalanceConvert"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="24dp"
-                        android:fontFamily="@font/roboto_bold"
-                        tools:text="@string/text_balance_convert"
-                        android:text="@{viewModel.cardLiveData.convertedBalance}"
-                        android:textColor="#000"
-                        android:textSize="24sp"
-                        app:layout_constraintStart_toStartOf="@id/imgUser"
-                        app:layout_constraintTop_toBottomOf="@id/imgUser" />
-
-                    <TextView
-                        android:id="@+id/tvBalance"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/roboto_bold"
-                        tools:text="@string/text_balance"
-                        android:text="@{viewModel.cardLiveData.formattedBalance()}"
-                        android:textColor="#000"
-                        android:textSize="18sp"
-                        app:layout_constraintBottom_toBottomOf="@id/tvBalanceConvert"
-                        app:layout_constraintEnd_toEndOf="@id/tvCardNumber"
-                        app:layout_constraintTop_toTopOf="@id/tvBalanceConvert" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/roboto_thin"
-                        android:text="@string/text_your_balance"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="@id/tvBalance"
-                        app:layout_constraintStart_toStartOf="@id/tvBalance"
-                        app:layout_constraintTop_toBottomOf="@id/tvBalance" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/crdMoney"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/cardLeftMargin"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="@dimen/cardRightMargin"
-                app:cardCornerRadius="16dp"
-                app:cardUseCompatPadding="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/constraintLayout"
-                app:layout_constraintBottom_toBottomOf="parent">
-
-                <androidx.core.widget.NestedScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="230dp">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:id="@+id/tvHistory"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="24dp"
-                            android:fontFamily="@font/roboto_thin"
-                            android:text="@string/text_history"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.1"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/history_list"
-                            android:layout_width="match_parent"
-                            android:layout_height="160dp"
-                            android:layout_marginTop="@dimen/marginMaterial"
-                            app:listData="@{viewModel.cardLiveData.transactionHistoryList}"
-                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/tvHistory"
-                            tools:listitem="@layout/list_view_item" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </androidx.core.widget.NestedScrollView>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/marginMaterial"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="@dimen/marginMaterial"
-                app:layout_constraintTop_toBottomOf="@id/tvChangeCurrency">
-
-                <Button
-                    android:id="@+id/btnGBP"
-                    style="@style/MyButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableTop="@drawable/ic_gbp"
-                    android:text="@string/text_gbp"
-                    android:onClick="@{()->viewModel.setCurrencyType(`GBP`)}"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/btnEUR"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <Button
-                    android:id="@+id/btnEUR"
-                    style="@style/MyButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableTop="@drawable/ic_eur"
-                    android:text="@string/text_eur"
-                    android:onClick="@{()->viewModel.setCurrencyType(`EUR`)}"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/btnRUB"
-                    app:layout_constraintStart_toEndOf="@id/btnGBP"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <Button
-                    android:id="@+id/btnRUB"
-                    style="@style/MyButtonStyle"
-                    android:checked="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableTop="@drawable/ic_rub"
-                    android:text="@string/text_rub"
-                    android:onClick="@{()->viewModel.setCurrencyType(`RUB`)}"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/btnEUR"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </ScrollView>
-
-
-
 </layout>
