@@ -1,7 +1,11 @@
 package stanevich.elizaveta.exchangerates.overview;
 
+import android.os.Handler;
+import android.os.Looper;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
 import retrofit2.Call;
@@ -18,6 +22,10 @@ public class OverviewViewModel extends ViewModel {
     private final MutableLiveData<Status> _status = new MutableLiveData<>();
 
 
+    public OverviewViewModel() {
+        requestCard();
+    }
+
     public LiveData<Card> getCardLiveData() {
         return _card;
     }
@@ -26,17 +34,16 @@ public class OverviewViewModel extends ViewModel {
         return _status;
     }
 
-
-    private void requestCard() {
+    public void requestCard() {
         _status.setValue(Status.LOADING);
-
         CardApiService.getInstance().getJSONCardApi().getCardProperty().enqueue(new Callback<Card>() {
 
             @Override
             public void onResponse(Call<Card> call, Response<Card> response) {
 
                 if (response.isSuccessful()) {
-                    Card card = response.body();
+                    final Card card = response.body();
+
                     _card.setValue(card);
                 }
 

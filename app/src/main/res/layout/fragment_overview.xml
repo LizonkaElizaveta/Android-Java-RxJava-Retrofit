@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-
     <data>
 
         <variable
@@ -104,13 +103,14 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/marginMaterial"
                         android:fontFamily="@font/roboto_bold"
-                        android:text="@string/text_card_number"
+                        android:text="@{viewModel.cardLiveData.cardNumber}"
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="24sp"
                         app:layout_constraintBottom_toBottomOf="@id/imgMastercard"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/imgMastercard"
-                        app:layout_constraintTop_toTopOf="@id/imgMastercard" />
+                        app:layout_constraintTop_toTopOf="@id/imgMastercard"
+                        tools:text="@string/text_card_number" />
 
                     <TextView
                         android:id="@+id/tvUserName"
@@ -118,7 +118,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/marginMaterial"
                         android:fontFamily="@font/roboto_thin"
-                        android:text="@string/text_user_name"
+                        android:text="@{viewModel.cardLiveData.cardholderName}"
+                        tools:text="@string/text_user_name"
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="16sp"
                         android:textStyle="bold"
@@ -132,7 +133,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_thin"
-                        android:text="@string/text_valid_number"
+                        android:text="@{viewModel.cardLiveData.valid}"
+                        tools:text="@string/text_valid_number"
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="16sp"
                         android:textStyle="bold"
@@ -155,28 +157,28 @@
 
                     <TextView
                         android:id="@+id/tvBalanceConvert"
-                        android:fontFamily="@font/roboto_bold"
-                        android:textColor="#000"
-                        android:textSize="24sp"
-                        android:layout_marginTop="24dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/imgUser"
+                        android:layout_marginTop="24dp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="@string/text_balance_convert"
+                        android:textColor="#000"
+                        android:textSize="24sp"
                         app:layout_constraintStart_toStartOf="@id/imgUser"
-                        android:text="@string/text_balance_convert" />
+                        app:layout_constraintTop_toBottomOf="@id/imgUser" />
 
                     <TextView
                         android:id="@+id/tvBalance"
-                        android:textSize="18sp"
-                        android:textColor="#000"
-                        android:fontFamily="@font/roboto_bold"
-                        android:text="@string/text_balance"
-                        app:layout_constraintTop_toTopOf="@id/tvBalanceConvert"
-                        app:layout_constraintBottom_toBottomOf="@id/tvBalanceConvert"
-                       app:layout_constraintEnd_toEndOf="@id/tvCardNumber"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        />
+                        android:fontFamily="@font/roboto_bold"
+                        tools:text="@string/text_balance"
+                        android:text="@{viewModel.cardLiveData.balance}"
+                        android:textColor="#000"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="@id/tvBalanceConvert"
+                        app:layout_constraintEnd_toEndOf="@id/tvCardNumber"
+                        app:layout_constraintTop_toTopOf="@id/tvBalanceConvert" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -192,53 +194,6 @@
 
 
             </androidx.cardview.widget.CardView>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/marginMaterial"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="@dimen/marginMaterial"
-                app:layout_constraintTop_toBottomOf="@id/tvChangeCurrency">
-
-                <Button
-                    style="@style/MyButtonStyle"
-                    android:id="@+id/btnGBP"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableTop="@drawable/ic_gbp"
-                    android:text="@string/text_gbp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/btnEUR"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <Button
-                    style="@style/MyButtonStyle"
-                    android:id="@+id/btnEUR"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableTop="@drawable/ic_eur"
-                    android:text="@string/text_eur"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@id/btnRUB"
-                    app:layout_constraintStart_toEndOf="@id/btnGBP"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <Button
-                    style="@style/MyButtonStyle"
-                    android:id="@+id/btnRUB"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableTop="@drawable/ic_rub"
-                    android:text="@string/text_rub"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/btnEUR"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/crdMoney"
@@ -265,26 +220,26 @@
                             android:id="@+id/tvHistory"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="24dp"
                             android:fontFamily="@font/roboto_thin"
-                            android:textStyle="bold"
-                            android:textSize="18sp"
-                            android:textColor="@color/colorPrimaryDark"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintHorizontal_bias="0.1"
-                            app:layout_constraintTop_toTopOf="parent"
                             android:text="@string/text_history"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_marginTop="24dp"/>
+                            app:layout_constraintHorizontal_bias="0.1"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <androidx.recyclerview.widget.RecyclerView
-                            android:layout_marginTop="@dimen/marginMaterial"
                             android:id="@+id/history_list"
                             android:layout_width="match_parent"
                             android:layout_height="140dp"
+                            android:layout_marginTop="@dimen/marginMaterial"
                             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/tvHistory"
                             tools:listitem="@layout/list_view_item" />
 
@@ -294,8 +249,57 @@
 
             </androidx.cardview.widget.CardView>
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/marginMaterial"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="@dimen/marginMaterial"
+                app:layout_constraintTop_toBottomOf="@id/tvChangeCurrency">
+
+                <Button
+                    android:id="@+id/btnGBP"
+                    style="@style/MyButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableTop="@drawable/ic_gbp"
+                    android:text="@string/text_gbp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/btnUSD"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/btnUSD"
+                    style="@style/MyButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableTop="@drawable/ic_eur"
+                    android:text="@string/text_eur"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/btnRUB"
+                    app:layout_constraintStart_toEndOf="@id/btnGBP"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/btnRUB"
+                    style="@style/MyButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableTop="@drawable/ic_rub"
+                    android:text="@string/text_rub"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/btnUSD"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
+
+
 
 </layout>

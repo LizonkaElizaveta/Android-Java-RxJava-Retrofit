@@ -8,11 +8,11 @@ import java.util.List;
 public class Card {
     @SerializedName("card_number")
     @Expose
-    private int cardNumber;
+    private String cardNumber = "1234 5432 2345 5322";
 
     @SerializedName("cardholder_name")
     @Expose
-    private int cardholderName;
+    private String cardholderName;
 
     @SerializedName("valid")
     @Expose
@@ -20,7 +20,7 @@ public class Card {
 
     @SerializedName("balance")
     @Expose
-    private String balance;
+    private String balance = "0.00";
 
     @SerializedName("transaction_history")
     @Expose
@@ -34,19 +34,19 @@ public class Card {
         this.transactionHistoryList = transactionHistoryList;
     }
 
-    public int getCardNumber() {
+    public String getCardNumber() {
         return cardNumber;
     }
 
-    public void setCardNumber(int cardNumber) {
+    public void setCardNumber(String cardNumber) {
         this.cardNumber = cardNumber;
     }
 
-    public int getCardholderName() {
+    public String getCardholderName() {
         return cardholderName;
     }
 
-    public void setCardholderName(int cardholderName) {
+    public void setCardholderName(String cardholderName) {
         this.cardholderName = cardholderName;
     }
 
@@ -59,7 +59,7 @@ public class Card {
     }
 
     public String getBalance() {
-        return balance;
+        return "$" + balance;
     }
 
     public void setBalance(String balance) {

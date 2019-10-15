@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import stanevich.elizaveta.exchangerates.R;
@@ -23,15 +22,13 @@ public class OverviewFragment extends Fragment {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        FragmentOverviewBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_overview,container,false);
+        FragmentOverviewBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_overview, container, false);
 
-        binding.getLifecycleOwner();
 
         OverviewViewModel viewModel = ViewModelProviders.of(this).get(OverviewViewModel.class);
 
         binding.setViewModel(viewModel);
-
-
+        binding.setLifecycleOwner(this);
         return binding.getRoot();
     }
 }

@@ -9,7 +9,7 @@ import stanevich.elizaveta.exchangerates.network.data.card.Card;
 public class CardApiService {
 
     private static CardApiService mInstance;
-    private static final String BASE_URL = "https://peterpartner.net/tasktest";
+    private static final String BASE_URL = "https://peterpartner.net/tasktest/";
     private Retrofit mRetrofit;
 
     private CardApiService() {
@@ -28,7 +28,7 @@ public class CardApiService {
 
 
     public interface JSONPCardApi {
-        @GET("/data.php")
+        @GET("data.php")
         Call<Card> getCardProperty();
     }
 

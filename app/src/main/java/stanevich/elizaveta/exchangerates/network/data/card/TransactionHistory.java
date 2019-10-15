@@ -7,11 +7,11 @@ public class TransactionHistory {
 
     @SerializedName("title")
     @Expose
-    private int title;
+    private String title;
 
     @SerializedName("icon_url")
     @Expose
-    private int icon_url;
+    private String icon_url;
 
     @SerializedName("date")
     @Expose
@@ -21,19 +21,19 @@ public class TransactionHistory {
     @Expose
     private String amount;
 
-    public int getTitle() {
+    public String getTitle() {
         return title;
     }
 
-    public void setTitle(int title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 
-    public int getIcon_url() {
+    public String getIcon_url() {
         return icon_url;
     }
 
-    public void setIcon_url(int icon_url) {
+    public void setIcon_url(String icon_url) {
         this.icon_url = icon_url;
     }
 
